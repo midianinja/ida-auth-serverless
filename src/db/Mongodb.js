@@ -3,7 +3,7 @@ import usersModel from './models/users.model';
 
 mongoose.Promise = global.Promise;
 
-export default async ({ conn, mongoUrl = '' }) => {
+export default async ({ conn, mongoUrl = 'mongodb://localhost/auth-ida' }) => {
   console.log('mongoUrl: ', mongoUrl);
   try {
     if (!conn) {
