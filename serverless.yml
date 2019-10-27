@@ -66,34 +66,90 @@ plugins:
   - serverless-offline
 
 functions:
-  isAlive:
+  isAliveFunction:
     handler: index.isAliveFunction
     events:
      - http:
         method: GET
-        path: isAlive
-        cors: true
-  login:
+        path: is-alive
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  loginFunction:
     handler: index.loginFunction
     events:
      - http:
         method: POST
         path: login
-        cors: true
-  signup:
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  signupFunction:
     handler: index.signupFunction
     events:
      - http:
         method: POST
         path: signup
-        cors: true
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
   validateToken:
     handler: index.validateTokenFunction
     events:
      - http:
         method: POST
-        path: validateToken
-        cors: true
+        path: validate-token
+        cors:
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
 
 
 #    The following are a few example events you can configure

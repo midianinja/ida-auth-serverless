@@ -23,11 +23,21 @@ export const validateToken = async (event) => {
     const decoded = await jwt.verify(token, SECRET);
     return ({
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(decoded),
     });
   } catch (error) {
     return ({
       statusCode: statusCode.UNAUTHORIZED.code,
+      headers: {
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ error: statusCode.UNAUTHORIZED.tag }),
     });
   }
