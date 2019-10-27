@@ -7,16 +7,12 @@ export const loginFunction = login;
 export const signupFunction = signup;
 export const validateTokenFunction = validateToken;
 
-export const isAliveFunction = (event) => {
-  console.log('body: ', event.body);
-  console.log('httpMethod: ', event.httpMethod);
-  console.log('queryStringParameters: ', event.queryStringParameters);
-  console.log('multiValueQueryStringParameters: ', event.multiValueQueryStringParameters);
-  console.log('stageVariables: ', event.stageVariables);
-  console.log('resource: ', event.resource);
-  console.log('pathParameters: ', event.pathParameters);
-};
-
-export const vtnc = (event) => {
-  console.log('event: ', event);
-};
+export const isAliveFunction = () => ({
+  statusCode: 200,
+  headers: {
+    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({}),
+});
