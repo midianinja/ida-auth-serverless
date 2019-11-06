@@ -12,14 +12,12 @@ dotenv.config();
  */
 export const validateToken = async (event) => {
   const { token } = JSON.parse(event.body);
-  console.log('token: ', token);
   const {
     SECRET,
   } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
   });
 
-  console.log('SECRET: ', SECRET);
   try {
     const decoded = await jwt.verify(token, SECRET);
     return ({

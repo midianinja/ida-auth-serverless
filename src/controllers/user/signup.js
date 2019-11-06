@@ -40,7 +40,7 @@ export const signup = async (event) => {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
         },
-        error: 'auth/duplicated-user',
+        body: JSON.stringify({ error: 'auth/duplicated-user' }),
       });
     }
 

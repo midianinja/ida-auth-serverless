@@ -66,6 +66,50 @@ plugins:
   - serverless-offline
 
 functions:
+  generateCodeFunction: 
+    handler: index.generateCodeFunction
+    events:
+     - http:
+        method: POST
+        path: phone-generate-code
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  validateCodeFunction: 
+    handler: index.validateCodeFunction
+    events:
+     - http:
+        method: POST
+        path: phone-validate-code
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
   isAliveFunction:
     handler: index.isAliveFunction
     events:
@@ -78,6 +122,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -99,6 +144,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -120,6 +166,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -141,6 +188,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
