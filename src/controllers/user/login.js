@@ -55,6 +55,7 @@ export const login = async (event) => {
         body: JSON.stringify({ error: 'user/wrong-password' }),
       });
     }
+
     const token = jwt.sign({ username, ida: user._id }, SECRET, {
       expiresIn: '1h',
     });

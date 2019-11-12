@@ -66,6 +66,50 @@ plugins:
   - serverless-offline
 
 functions:
+  validateEmailTokenFunction: 
+    handler: index.validateEmailTokenFunction
+    events:
+     - http:
+        method: POST
+        path: validate-email-token
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  sendEmailValidationFunction: 
+    handler: index.sendEmailValidationFunction
+    events:
+     - http:
+        method: POST
+        path: send-email-validation
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
   generateCodeFunction: 
     handler: index.generateCodeFunction
     events:
