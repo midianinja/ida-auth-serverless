@@ -66,6 +66,28 @@ plugins:
   - serverless-offline
 
 functions:
+  getUserFunction: 
+    handler: index.getUserFunction
+    events:
+     - http:
+        method: GET
+        path: user/{ida}
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
   validateEmailTokenFunction: 
     handler: index.validateEmailTokenFunction
     events:

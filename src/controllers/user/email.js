@@ -14,7 +14,7 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const getEmailParams = to => ({
+const getEmailParams = (ida, to, webBaseUri) => ({
   Destination: {
     ToAddresses: [to.address],
   },
@@ -22,11 +22,11 @@ const getEmailParams = to => ({
     Body: {
       Html: {
         Charset: 'UTF-8',
-        Data: 'This is the message body in text format.',
+        Data: `Clique <a href="${webBaseUri}/ativacao/${ida}?token=${to.token}">aqui</a> para validar sua conta.`,
       },
       Text: {
         Charset: 'UTF-8',
-        Data: 'This is the message body in text format.',
+        Data: `Seu link de ativação: ${webBaseUri}/ativacao/${ida}?token=${to.token}`,
       },
     },
     Subject: {
@@ -37,10 +37,9 @@ const getEmailParams = to => ({
   Source: 'gabrielfurlan05@gmail.com',
 });
 
-const send = to => new Promise((resolve, reject) => {
-  ses.sendEmail(getEmailParams(to), (err, data) => {
+const send = (ida, to, webBaseUri) => new Promise((resolve, reject) => {
+  ses.sendEmail(getEmailParams(ida, to, webBaseUri), (err, data) => {
     if (err) {
-      console.log(err, err.stack);
       reject(err);
     } else {
       resolve(data);
@@ -59,9 +58,10 @@ export const sendEmailValidation = async (event) => {
   const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
   const emailExpressionValidator = /^[a-z0-9._-]{2,}@[a-z0-9]{2,}\.[a-z]{2,}(\.[a-z]{2})?$/;
 
-  const { SECRET, MONGO_URL } = event.stageVariables || ({
+  const { SECRET, MONGO_URL, WEB_URI } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    WEB_URI: 'http://localhost:8080',
   });
 
   let isValid = emailExpressionValidator.test(email);
@@ -122,7 +122,7 @@ export const sendEmailValidation = async (event) => {
   let sendEmailResult;
 
   try {
-    sendEmailResult = await send(data.email);
+    sendEmailResult = await send(ida, data.email, WEB_URI);
   } catch (err) {
     return ({
       statusCode: statusCode.BAD_REQUEST.code,
@@ -230,9 +230,13 @@ export const validateEmailToken = async (event) => {
     });
   }
 
+  const sessionToken = jwt.sign({ username: user.username, ida: user._id }, SECRET, {
+    expiresIn: '1h',
+  });
+
   return ({
     statusCode: statusCode.SUCCESS.code,
     headers,
-    body: JSON.stringify({ ida, email: user.email.address }),
+    body: JSON.stringify({ data: { ida, email: user.email.address, sessionToken } }),
   });
 };

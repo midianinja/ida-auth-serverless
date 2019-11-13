@@ -1,10 +1,12 @@
 
+import { getUser } from './src/controllers/user/find';
 import { login } from './src/controllers/user/login';
 import { signup } from './src/controllers/user/signup';
 import { validateToken } from './src/controllers/user/validateToken';
 import { generateCode, validateCode } from './src/controllers/user/phone';
 import { sendEmailValidation, validateEmailToken } from './src/controllers/user/email';
 
+export const getUserFunction = getUser;
 export const loginFunction = login;
 export const signupFunction = signup;
 export const validateTokenFunction = validateToken;

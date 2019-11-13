@@ -60,6 +60,14 @@ export const login = async (event) => {
       expiresIn: '1h',
     });
 
+    const userData = {
+      ida: user._id,
+      username: user.username,
+      email: user.email,
+      phone: user.phone,
+      last_login: user.last_login,
+    };
+
     return ({
       statusCode: statusCode.ACCEPTED.code,
       headers: {
@@ -67,7 +75,7 @@ export const login = async (event) => {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: { ida: user._id, token } }),
+      body: JSON.stringify({ data: { user: userData, ida: userData.ida, token } }),
     });
   } catch (error) {
     return ({
