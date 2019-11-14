@@ -31,7 +31,7 @@ const getEmailParams = (ida, to, webBaseUri) => ({
     },
     Subject: {
       Charset: 'UTF-8',
-      Data: 'Test email',
+      Data: 'Confirme sua conta no SOM',
     },
   },
   Source: 'gabrielfurlan05@gmail.com',

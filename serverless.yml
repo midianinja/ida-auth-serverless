@@ -66,6 +66,72 @@ plugins:
   - serverless-offline
 
 functions:
+  resetPasswordFunction: 
+    handler: index.resetPasswordFunction
+    events:
+     - http:
+        method: POST
+        path: reset-password
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  validateResetPasswordTokenFunction: 
+    handler: index.validateResetPasswordTokenFunction
+    events:
+     - http:
+        method: POST
+        path: validate-reset-password-token
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  requestResetPasswordFunction: 
+    handler: index.requestResetPasswordFunction
+    events:
+     - http:
+        method: POST
+        path: request-reset-password
+        cors: 
+          origins:
+            - https://*.som.vc
+            - http://*.som.vc
+            - http://som.vc
+            - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
   getUserFunction: 
     handler: index.getUserFunction
     events:

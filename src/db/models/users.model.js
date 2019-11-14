@@ -14,6 +14,11 @@ const usersModel = new Schema({
     valid: { type: Boolean, default: false },
     confirmation_code: { type: String, default: null },
   },
+  reseted_passwords: [{
+    password: { type: String, required: true },
+    date: { type: Date, required: true, default: Date.now() },
+    used_token: { type: String, required: true },
+  }],
   last_login: { type: Date, default: Date.now() },
 }, {
   usePushEach: true,

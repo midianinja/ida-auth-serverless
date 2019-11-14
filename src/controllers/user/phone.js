@@ -37,7 +37,7 @@ const getRandomCode = () => {
  */
 export const generateCode = async (event) => {
   const { phone, ida } = JSON.parse(event.body);
-  const phoneExpressionValidator = /^\+[0-9]{13}$/;
+  const phoneExpressionValidator = /^\+[0-9]{9,}$/;
   const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
 
   let isValid = phoneExpressionValidator.test(phone);
