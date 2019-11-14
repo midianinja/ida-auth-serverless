@@ -16,6 +16,8 @@ let conn = null;
  */
 export const signup = async (event) => {
   const { username, password } = JSON.parse(event.body);
+  console.log('password: ', password);
+  console.log('username: ', username);
   const {
     SECRET,
     MONGO_URL,
@@ -57,21 +59,21 @@ export const signup = async (event) => {
     return ({
       statusCode: statusCode.CREATED.code,
       headers: {
-        'Access-Control-Allow-Credentials': true,
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ data: { ida: newUser._id, token } }),
     });
   } catch (error) {
     return ({
-      statusCode: statusCode.INTERNAL_SERVER_ERROR.code,
+      statusCode: 500,
       headers: {
-        'Access-Control-Allow-Credentials': true,
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ error }),
+      body: JSON.stringify({ error: error.Error }),
     });
   }
 };
