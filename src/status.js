@@ -7,6 +7,10 @@ export default ({
     code: 201,
     tag: 'register',
   },
+  CONFLICT: {
+    code: 409,
+    tag: 'conflict',
+  },
   ACCEPTED: {
     code: 202,
     tag: 'accepted',
