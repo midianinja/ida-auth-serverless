@@ -16,6 +16,7 @@ let conn = null;
  */
 export const login = async (event) => {
   const { username, password } = JSON.parse(event.body);
+  console.log('TCL: login -> username', username);
 
   const { SECRET, MONGO_URL } = event.stageVariables || ({
     SECRET: 'weednaoehganja',

@@ -40,7 +40,7 @@ custom:
 #      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
 #    - Effect: "Allow"
 #      Action:
-#        - "s3:PutObject"
+#        - "s3:PutObjechttp://192.168.0.12/t"
 #      Resource:
 #        Fn::Join:
 #          - ""
@@ -78,7 +78,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -100,7 +100,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -122,7 +122,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -144,7 +144,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -166,7 +166,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -188,7 +188,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -210,7 +210,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -232,7 +232,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -254,7 +254,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -276,7 +276,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -298,7 +298,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -320,7 +320,7 @@ functions:
             - http://*.som.vc
             - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - http://192.168.0.12:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
