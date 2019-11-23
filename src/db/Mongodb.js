@@ -3,7 +3,8 @@ import usersModel from './models/users.model';
 
 mongoose.Promise = global.Promise;
 
-export default async ({ conn, mongoUrl = 'mongodb://localhost/auth-ida' }) => {
+export default async ({ conn, mongoUrl = 'mongodb+srv://gabriel:123admin123@som-bnvm2.mongodb.net/auth?retryWrites=true&w=majority' }) => {
+  console.log('mongoUrl: ', mongoUrl);
   try {
     if (!conn) {
       console.log('=> using new database connection');
