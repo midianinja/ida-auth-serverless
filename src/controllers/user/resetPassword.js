@@ -2,7 +2,7 @@ import AWS from 'aws-sdk';
 import jwt from 'jsonwebtoken';
 import statusCode from '../../status';
 import MongoDB from '../../db/Mongodb';
-import { hashPassword } from '../utils';
+import { hashPassword, sendSmsAws } from '../utils';
 
 AWS.config.region = 'us-west-2';
 const ses = new AWS.SES();
@@ -128,8 +128,8 @@ export const requestResetPassword = async (event) => {
     };
 
     try {
-      const publish = await sns.publish(snsData);
-      await publish.send();
+      const publish = await sendSmsAws(snsData);
+      console.log('publish:', publish);
     } catch (err) {
       return ({
         statusCode: statusCode.BAD_REQUEST.code,

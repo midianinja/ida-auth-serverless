@@ -105,14 +105,6 @@ export const generateCode = async (event) => {
   const publish = await sendSmsAws(snsData);
   console.log('publish:', publish);
 
-  // if (send.error) {
-  //   return ({
-  //     statusCode: statusCode.INTERNAL_SERVER_ERROR.code,
-  //     headers,
-  //     body: JSON.stringify({ error: send.error }),
-  //   });
-  // }
-
   return ({
     statusCode: statusCode.SUCCESS.code,
     headers,
