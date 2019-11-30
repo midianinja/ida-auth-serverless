@@ -34,7 +34,7 @@ const getEmailParams = (ida, to, webBaseUri) => ({
       Data: 'Confirme sua conta no SOM',
     },
   },
-  Source: 'gabrielfurlan05@gmail.com',
+  Source: 'naoresponda@som.vc',
 });
 
 const send = (ida, to, webBaseUri) => new Promise((resolve, reject) => {
