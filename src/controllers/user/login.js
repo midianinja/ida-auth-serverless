@@ -1,9 +1,8 @@
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import statusCode from '../../status';
 import MongoDB from '../../db/Mongodb';
-
 
 dotenv.config();
 let conn = null;
@@ -34,7 +33,7 @@ export const login = async (event) => {
 
     if (!user) {
       return ({
-        status: statusCode.UNAUTHORIZED.code,
+        statusCode: statusCode.UNAUTHORIZED.code,
         headers: {
           'Access-Control-Allow-Credentials': true,
           'Access-Control-Allow-Origin': '*',
