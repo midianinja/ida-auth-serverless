@@ -1,4 +1,7 @@
 import bcrypt from 'bcrypt';
+import AWS from 'aws-sdk';
+
+AWS.config.region = 'us-west-2';
 
 export const hashPassword = async (password) => {
   const saltRounds = 10;
@@ -12,5 +15,15 @@ export const hashPassword = async (password) => {
 
   return hashedPassword;
 };
+
+export const sendSmsAws = snsData => new Promise((res, rej) => {
+  console.log('snsData:', snsData);
+  const sns = new AWS.SNS();
+  sns.publish(snsData, (err, data) => {
+    console.log('data:', data);
+    if (err) return rej(err);
+    return res(data);
+  });
+});
 
 export default hashPassword;

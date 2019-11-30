@@ -76,6 +76,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - https://*.som.vc
             - http://localhost:8080
           headers:
             - Content-Type
@@ -96,6 +97,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - https://*.som.vc
             - http://localhost:8080
           headers:
             - Content-Type

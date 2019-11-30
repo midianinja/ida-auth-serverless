@@ -124,10 +124,11 @@ export const sendEmailValidation = async (event) => {
   try {
     sendEmailResult = await send(ida, data.email, WEB_URI);
   } catch (err) {
+    console.log('err:', err);
     return ({
       statusCode: statusCode.BAD_REQUEST.code,
       headers,
-      body: JSON.stringify({ error: 'email/to-send' }),
+      body: JSON.stringify({ error: 'email/to-send', data: err }),
     });
   }
 

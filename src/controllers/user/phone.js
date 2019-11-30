@@ -1,8 +1,7 @@
-import AWS from 'aws-sdk';
 import MongoDB from '../../db/Mongodb';
 import statusCode from '../../status';
+import { sendSmsAws } from '../utils';
 
-AWS.config.region = 'us-west-2';
 let conn = null;
 
 const headers = {
@@ -65,6 +64,7 @@ export const generateCode = async (event) => {
       confirmation_code: getRandomCode(),
     },
   };
+  console.log('data:', data);
 
   const { MONGO_URL } = event.stageVariables || ({
     MONGO_URL: process.env.MONGO_URL,
@@ -78,6 +78,7 @@ export const generateCode = async (event) => {
   const Users = conn.model('users');
   let user;
   try {
+    console.log('user:', user);
     user = await Users.findOneAndUpdate({ _id: ida }, data, { new: true });
   } catch (error) {
     return ({
@@ -95,23 +96,22 @@ export const generateCode = async (event) => {
     });
   }
 
-  const sns = new AWS.SNS();
   const snsData = {
     Message: `IDA-${data.phone.confirmation_code} é o código de confirmação de seu telefone para sua conta no SOM/IDA.`,
     MessageStructure: 'string',
     PhoneNumber: phone,
   };
 
-  const publish = await sns.publish(snsData);
-  const send = await publish.send();
+  const publish = await sendSmsAws(snsData);
+  console.log('publish:', publish);
 
-  if (send.error) {
-    return ({
-      statusCode: statusCode.INTERNAL_SERVER_ERROR.code,
-      headers,
-      body: JSON.stringify({ error: send.error }),
-    });
-  }
+  // if (send.error) {
+  //   return ({
+  //     statusCode: statusCode.INTERNAL_SERVER_ERROR.code,
+  //     headers,
+  //     body: JSON.stringify({ error: send.error }),
+  //   });
+  // }
 
   return ({
     statusCode: statusCode.SUCCESS.code,
