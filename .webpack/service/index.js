@@ -38,7 +38,7 @@ module.exports=function(e){var t={};function r(s){if(t[s])return t[s].exports;va
 /*!***************************!*\
   !*** ./src/db/Mongodb.js ***!
   \***************************/
-/*! exports provided: default */function(e,t,r){"use strict";r.r(t);var s=r(/*! mongoose */"mongoose"),o=r.n(s),n=r(/*! ./models/users.model */"./src/db/models/users.model.js");o.a.Promise=global.Promise,t.default=async({conn:e,mongoUrl:t="mongodb+srv://gabriel:123admin123@som-bnvm2.mongodb.net/auth?retryWrites=true&w=majority"})=>{console.log("mongoUrl: ",t);try{if(!e){console.log("=> using new database connection"),o.a.model("users",n.default);const e=await o.a.createConnection(t,{bufferCommands:!1,bufferMaxEntries:0,keepAlive:!0});return e.model("users",n.default),e}return console.log("=> using existing database connection"),e}catch(e){throw e}}},"./src/db/models/users.model.js":
+/*! exports provided: default */function(e,t,r){"use strict";r.r(t);var s=r(/*! mongoose */"mongoose"),o=r.n(s),n=r(/*! ./models/users.model */"./src/db/models/users.model.js");o.a.Promise=global.Promise,t.default=async({conn:e,mongoUrl:t="srv://gabriel:123admin123@som-bnvm2.mongodb.net/auth?retryWrites=true&w=majority"})=>{console.log("mongoUrl: ",t);try{if(!e){console.log("=> using new database connection"),o.a.model("users",n.default);const e=await o.a.createConnection(`mongodb+${t}`,{bufferCommands:!1,bufferMaxEntries:0,keepAlive:!0});return e.model("users",n.default),e}return console.log("=> using existing database connection"),e}catch(e){throw e}}},"./src/db/models/users.model.js":
 /*!**************************************!*\
   !*** ./src/db/models/users.model.js ***!
   \**************************************/

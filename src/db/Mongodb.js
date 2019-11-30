@@ -3,7 +3,7 @@ import usersModel from './models/users.model';
 
 mongoose.Promise = global.Promise;
 
-export default async ({ conn, mongoUrl = 'mongodb+srv://gabriel:123admin123@som-bnvm2.mongodb.net/auth?retryWrites=true&w=majority' }) => {
+export default async ({ conn, mongoUrl = 'srv://gabriel:123admin123@som-bnvm2.mongodb.net/auth?retryWrites=true&w=majority' }) => {
   console.log('mongoUrl: ', mongoUrl);
   try {
     if (!conn) {
@@ -11,7 +11,7 @@ export default async ({ conn, mongoUrl = 'mongodb+srv://gabriel:123admin123@som-
 
       mongoose.model('users', usersModel);
 
-      const newConnection = await mongoose.createConnection(mongoUrl, {
+      const newConnection = await mongoose.createConnection(`mongodb+${mongoUrl}`, {
         bufferCommands: false,
         bufferMaxEntries: 0,
         keepAlive: true,
