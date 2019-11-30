@@ -40,7 +40,7 @@ custom:
 #      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
 #    - Effect: "Allow"
 #      Action:
-#        - "s3:PutObject"
+#        - "s3:PutObjechttp://localhost/t"
 #      Resource:
 #        Fn::Join:
 #          - ""
@@ -156,6 +156,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -175,6 +176,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -194,6 +196,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -213,6 +216,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -232,6 +236,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -251,6 +256,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -270,6 +276,7 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -289,16 +296,16 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
-        headers:
-          - Content-Type
-          - Access-Control-Allow-Origin
-          - X-Amz-Date
-          - Authorization
-          - X-Api-Key
-          - X-Amz-Security-Token
-          - X-Amz-User-Agent
-        allowCredentials: true
-
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
