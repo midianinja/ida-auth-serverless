@@ -6,7 +6,6 @@ import { hashPassword, sendSmsAws } from '../utils';
 
 AWS.config.region = 'us-west-2';
 const ses = new AWS.SES();
-const sns = new AWS.SNS();
 
 let conn = null;
 
