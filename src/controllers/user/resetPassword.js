@@ -59,9 +59,15 @@ export const requestResetPassword = async (event) => {
   const emailExpressionValidator = /^[a-z0-9._-]{2,}@[a-z0-9]{2,}\.[a-z0-9]{2,}(\.[a-z0-9]{2,})*?$/;
   const phoneExpressionValidator = /^\+[0-9]{9,}$/;
 
-  const { SECRET, MONGO_URL, WEB_URI } = event.stageVariables || ({
+  const {
+    SECRET,
+    MONGO_URL,
+    WEB_URI,
+    DATABASE_NAME,
+  } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
     WEB_URI: 'http://localhost:8080',
   });
 
@@ -78,7 +84,7 @@ export const requestResetPassword = async (event) => {
 
   conn = await MongoDB({
     conn,
-    mongoUrl: MONGO_URL,
+    mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
   const filter = {
@@ -201,9 +207,10 @@ export const validateResetPasswordToken = async (event) => {
 export const resetPassword = async (event) => {
   const { token, password } = JSON.parse(event.body);
 
-  const { SECRET, MONGO_URL } = event.stageVariables || ({
+  const { SECRET, MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
 
   const promise = () => new Promise((resolve, reject) => {
@@ -236,7 +243,7 @@ export const resetPassword = async (event) => {
 
   conn = await MongoDB({
     conn,
-    mongoUrl: MONGO_URL,
+    mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
   const Users = conn.model('users');
