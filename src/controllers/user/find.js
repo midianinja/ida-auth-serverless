@@ -17,8 +17,9 @@ const headers = {
  */
 export const getUser = async (event) => {
   const { ida } = event.pathParameters;
-  const { MONGO_URL } = event.stageVariables || ({
+  const { MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
   const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
   const isValid = idaExpressionValidator.test(ida);
@@ -33,7 +34,7 @@ export const getUser = async (event) => {
   try {
     conn = await MongoDB({
       conn,
-      mongoUrl: MONGO_URL,
+      mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
     });
   } catch (error) {
     return ({

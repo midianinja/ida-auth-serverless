@@ -21,19 +21,22 @@ export const signup = async (event) => {
   const {
     SECRET,
     MONGO_URL,
+    DATABASE_NAME,
   } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
 
   try {
     conn = await MongoDB({
       conn,
-      mongoUrl: MONGO_URL,
+      mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
     });
     const Users = conn.model('users');
 
     const user = await Users.findOne({ username });
+    console.log('user:', user);
     if (user) {
       return ({
         statusCode: statusCode.UNAUTHORIZED.code,
@@ -46,17 +49,21 @@ export const signup = async (event) => {
       });
     }
 
+    console.log('password:', password);
     const hashedPassword = await hashPassword(password);
+    console.log('hashedPassword:', hashedPassword);
     const newUser = new Users({
       username,
       password: hashedPassword,
     });
 
+    console.log('newUser:', newUser);
     const myUser = await newUser.save();
     console.log('user:', myUser);
     const token = jwt.sign({ username, ida: newUser._id },
       SECRET, { expiresIn: '1h' });
 
+    console.log('token:', token);
     return ({
       statusCode: statusCode.CREATED.code,
       headers: {
@@ -67,6 +74,7 @@ export const signup = async (event) => {
       body: JSON.stringify({ data: { ida: newUser._id, token } }),
     });
   } catch (error) {
+    console.log('error:', error);
     return ({
       statusCode: 500,
       headers: {

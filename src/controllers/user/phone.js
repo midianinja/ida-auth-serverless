@@ -66,13 +66,14 @@ export const generateCode = async (event) => {
   };
   console.log('data:', data);
 
-  const { MONGO_URL } = event.stageVariables || ({
+  const { MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
 
   conn = await MongoDB({
     conn,
-    mongoUrl: MONGO_URL,
+    mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
   const Users = conn.model('users');
@@ -138,13 +139,14 @@ export const validateCode = async (event) => {
     });
   }
 
-  const { MONGO_URL } = event.stageVariables || ({
+  const { MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
 
   conn = await MongoDB({
     conn,
-    mongoUrl: MONGO_URL,
+    mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
   const Users = conn.model('users');

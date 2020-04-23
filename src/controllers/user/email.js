@@ -58,9 +58,15 @@ export const sendEmailValidation = async (event) => {
   const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
   const emailExpressionValidator = /^[a-z0-9._-]{2,}@[a-z0-9]{2,}\.[a-z]{2,}(\.[a-z]{2})?$/;
 
-  const { SECRET, MONGO_URL, WEB_URI } = event.stageVariables || ({
+  const {
+    SECRET,
+    MONGO_URL,
+    WEB_URI,
+    DATABASE_NAME,
+  } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
     WEB_URI: 'http://localhost:8080',
   });
 
@@ -96,7 +102,7 @@ export const sendEmailValidation = async (event) => {
 
   conn = await MongoDB({
     conn,
-    mongoUrl: MONGO_URL,
+    mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
   const Users = conn.model('users');
@@ -149,9 +155,10 @@ export const validateEmailToken = async (event) => {
   const { ida, token } = JSON.parse(event.body);
   const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
 
-  const { SECRET, MONGO_URL } = event.stageVariables || ({
+  const { SECRET, MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
 
   const isValid = idaExpressionValidator.test(ida);
@@ -165,7 +172,7 @@ export const validateEmailToken = async (event) => {
 
   conn = await MongoDB({
     conn,
-    mongoUrl: MONGO_URL,
+    mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
   const Users = conn.model('users');

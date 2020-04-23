@@ -20,7 +20,7 @@ service: ida-auth-serverless # NOTE: update this with your service name
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   region: us-west-2
 
 custom:
@@ -74,10 +74,8 @@ functions:
         path: reset-password
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
-            - https://*.som.vc
-            - http://localhost:8080
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -95,10 +93,8 @@ functions:
         path: validate-reset-password-token
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
-            - https://*.som.vc
-            - http://localhost:8080
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -116,10 +112,10 @@ functions:
         path: request-reset-password
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -137,10 +133,10 @@ functions:
         path: user/{ida}
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -158,10 +154,10 @@ functions:
         path: validate-email-token
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -179,10 +175,10 @@ functions:
         path: send-email-validation
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -200,10 +196,10 @@ functions:
         path: phone-generate-code
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -221,10 +217,10 @@ functions:
         path: phone-validate-code
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -242,10 +238,10 @@ functions:
         path: is-alive
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -263,10 +259,10 @@ functions:
         path: login
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -284,10 +280,10 @@ functions:
         path: signup
         cors: 
           origins:
-            - http://som.vc
             - https://som.vc
             - http://localhost:8080
             - http://localhost:8000
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -305,9 +301,8 @@ functions:
         path: validate-token
         cors:
           origins:
-            - http://som.vc
             - https://som.vc
-            - http://localhost:8080
+            - https://dev.som.vc
           headers:
             - Content-Type
             - Access-Control-Allow-Origin

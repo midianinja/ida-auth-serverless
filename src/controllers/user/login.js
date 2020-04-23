@@ -17,15 +17,16 @@ export const login = async (event) => {
   console.log('hereee');
   const { username, password } = JSON.parse(event.body);
 
-  const { SECRET, MONGO_URL } = event.stageVariables || ({
+  const { SECRET, MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
     MONGO_URL: process.env.MONGO_URL,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   });
 
   try {
     conn = await MongoDB({
       conn,
-      mongoUrl: MONGO_URL,
+      mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
     });
 
     const Users = conn.model('users');
