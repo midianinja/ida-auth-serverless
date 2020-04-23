@@ -119,6 +119,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -139,6 +140,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -159,6 +161,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -179,6 +182,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -199,6 +203,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -219,6 +224,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -239,6 +245,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -259,6 +266,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -279,6 +287,7 @@ functions:
             - http://som.vc
             - https://som.vc
             - http://localhost:8080
+            - http://localhost:8000
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -298,6 +307,67 @@ functions:
           origins:
             - http://som.vc
             - https://som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  registerPreRegisterList:
+    handler: index.registerPreRegisterListFunction
+    events:
+     - http:
+        method: POST
+        path: create-pre-register-list
+        cors:
+          origins:
+            - http://som.vc
+            - http://pre-registro.som.vc
+            - https://pre-registro.som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  findPreRegisterLists:
+    handler: index.findPreRegisterListsFunction
+    events:
+     - http:
+        method: GET
+        path: find-pre-register-lists
+        cors:
+          origins:
+            - http://pre-registro.som.vc
+            - https://pre-registro.som.vc
+            - http://localhost:8080
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+  findOnePreRegisterListFunction:
+    handler: index.findOnePreRegisterListFunction
+    events:
+     - http:
+        method: GET
+        path: find-pre-register-list/{id}
+        cors:
+          origins:
+            - http://pre-registro.som.vc
+            - https://pre-registro.som.vc
             - http://localhost:8080
           headers:
             - Content-Type
