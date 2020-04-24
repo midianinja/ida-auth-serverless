@@ -134,8 +134,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -155,8 +153,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -176,8 +172,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -197,8 +191,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -218,8 +210,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -239,8 +229,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -260,8 +248,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -281,8 +267,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -320,10 +304,7 @@ functions:
         path: create-pre-register-list
         cors:
           origins:
-            - http://som.vc
-            - http://pre-registro.som.vc
             - https://pre-registro.som.vc
-            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -332,7 +313,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   findPreRegisterLists:
     handler: index.findPreRegisterListsFunction
     events:
@@ -341,9 +322,7 @@ functions:
         path: find-pre-register-lists
         cors:
           origins:
-            - http://pre-registro.som.vc
             - https://pre-registro.som.vc
-            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -352,7 +331,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   findOnePreRegisterListFunction:
     handler: index.findOnePreRegisterListFunction
     events:
@@ -361,9 +340,7 @@ functions:
         path: find-pre-register-list/{id}
         cors:
           origins:
-            - http://pre-registro.som.vc
             - https://pre-registro.som.vc
-            - http://localhost:8080
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -372,7 +349,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
