@@ -74,6 +74,7 @@ functions:
         path: reset-password
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -85,7 +86,7 @@ functions:
             - X-Amz-Security-Token
             - X-Amz-User-Agent
           allowCredentials: true
-  validateResetPasswordTokenFunction: 
+  validateResetPassTokenFunction: 
     handler: index.validateResetPasswordTokenFunction
     events:
      - http:
@@ -93,6 +94,7 @@ functions:
         path: validate-reset-password-token
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -112,6 +114,7 @@ functions:
         path: request-reset-password
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -131,6 +134,7 @@ functions:
         path: user/{ida}
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -150,6 +154,7 @@ functions:
         path: validate-email-token
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -169,6 +174,7 @@ functions:
         path: send-email-validation
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -188,6 +194,7 @@ functions:
         path: phone-generate-code
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -207,6 +214,7 @@ functions:
         path: phone-validate-code
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -226,6 +234,7 @@ functions:
         path: is-alive
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -245,6 +254,7 @@ functions:
         path: login
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -264,6 +274,7 @@ functions:
         path: signup
         cors: 
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -283,6 +294,7 @@ functions:
         path: validate-token
         cors:
           origins:
+            - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
           headers:
