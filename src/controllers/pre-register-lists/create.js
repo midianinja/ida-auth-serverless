@@ -13,7 +13,9 @@ let conn = null;
  * @returns {object} containt status, success data or error
  */
 export const create = async (event) => {
-  const { answers, quiz, category } = JSON.parse(event.body);
+  const {
+    answers, quiz, category, questions,
+  } = JSON.parse(event.body);
   const { MONGO_URL } = event.stageVariables || ({
     MONGO_URL: process.env.MONGO_URL,
   });
@@ -29,6 +31,7 @@ export const create = async (event) => {
       answers,
       quiz,
       category,
+      questions,
     });
 
     await newList.save();
@@ -45,6 +48,7 @@ export const create = async (event) => {
           answers: newList.csv,
           category: newList.category,
           quiz: newList.quiz,
+          questions: newList.questions,
         },
       }),
     });
