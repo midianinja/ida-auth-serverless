@@ -84,7 +84,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   validateResetPasswordTokenFunction: 
     handler: index.validateResetPasswordTokenFunction
     events:
@@ -103,7 +103,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   requestResetPasswordFunction: 
     handler: index.requestResetPasswordFunction
     events:
@@ -113,8 +113,6 @@ functions:
         cors: 
           origins:
             - https://som.vc
-            - http://localhost:8080
-            - http://localhost:8000
             - https://dev.som.vc
           headers:
             - Content-Type
@@ -124,7 +122,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   getUserFunction: 
     handler: index.getUserFunction
     events:
@@ -143,7 +141,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   validateEmailTokenFunction: 
     handler: index.validateEmailTokenFunction
     events:
@@ -295,7 +293,7 @@ functions:
             - X-Api-Key
             - X-Amz-Security-Token
             - X-Amz-User-Agent
-          allowCredentials: false
+          allowCredentials: true
   registerPreRegisterList:
     handler: index.registerPreRegisterListFunction
     events:
