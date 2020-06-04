@@ -32,7 +32,7 @@ const getEmailParams = (ida, to, webBaseUri) => ({
     },
     Subject: {
       Charset: 'UTF-8',
-      Data: 'Link para resetar sua Ssnha',
+      Data: 'Link para resetar sua senha',
     },
   },
   Source: 'gabrielfurlan05@gmail.com',
