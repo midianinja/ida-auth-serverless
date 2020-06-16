@@ -38,7 +38,7 @@ git clone https://github.com/midianinja/ida-auth-serverless.git
 Go to the project root folder:
 
 ```
-cd som-api
+cd ida-auth-serverless
 ```
 
 In root directory install the dependecies:
