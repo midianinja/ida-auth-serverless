@@ -14,7 +14,6 @@ let conn = null;
  * @returns {object} containt status, success data or error
  */
 export const login = async (event) => {
-  console.log('hereee');
   const { username, password } = JSON.parse(event.body);
 
   const { SECRET, MONGO_URL, DATABASE_NAME } = event.stageVariables || ({
@@ -79,7 +78,6 @@ export const login = async (event) => {
       body: JSON.stringify({ data: { user: userData, ida: userData.ida, token } }),
     });
   } catch (error) {
-    console.log(error);
     return ({
       statusCode: statusCode.INTERNAL_SERVER_ERROR.code,
       headers: {

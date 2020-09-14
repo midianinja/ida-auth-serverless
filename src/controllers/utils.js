@@ -3,6 +3,17 @@ import AWS from 'aws-sdk';
 
 AWS.config.region = 'us-west-2';
 
+
+const POSSIBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+export const generateKey = (length = 32) => {
+  let text = '';
+  for (let i = 0; i < length; i += 1) {
+    text += POSSIBLE_CHARS.charAt(Math.floor(Math.random() * POSSIBLE_CHARS.length));
+  }
+
+  return text;
+};
+
 export const hashPassword = async (password) => {
   const saltRounds = 10;
 

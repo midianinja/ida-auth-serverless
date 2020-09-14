@@ -9,6 +9,8 @@ import { requestResetPassword, validateResetPasswordToken, resetPassword } from 
 import { create as registerPreRegisterList } from './src/controllers/pre-register-lists/create';
 import { find as findPreRegisterLists } from './src/controllers/pre-register-lists/find';
 import { findOne as findOnePreRegisterList } from './src/controllers/pre-register-lists/findOne';
+import { create as createApp } from './src/controllers/app/create';
+import { verify as verifyApp } from './src/controllers/app/verify';
 
 export const getUserFunction = getUser;
 export const loginFunction = login;
@@ -24,6 +26,8 @@ export const resetPasswordFunction = resetPassword;
 export const registerPreRegisterListFunction = registerPreRegisterList;
 export const findPreRegisterListsFunction = findPreRegisterLists;
 export const findOnePreRegisterListFunction = findOnePreRegisterList;
+export const verifyAppFunction = verifyApp;
+export const createAppFunction = createApp;
 
 export const isAliveFunction = () => ({
   statusCode: 200,

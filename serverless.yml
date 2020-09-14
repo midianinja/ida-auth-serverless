@@ -360,6 +360,42 @@ functions:
             - X-Amz-Security-Token
             - X-Amz-User-Agent
           allowCredentials: true
+  createAppFunction:
+    handler: index.createAppFunction
+    events:
+     - http:
+        method: POST
+        path: create-app
+        cors:
+          origins:
+            - https://idaativsita.org
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+  verifyAppFunction:
+    handler: index.verifyAppFunction
+    events:
+     - http:
+        method: POST
+        path: verify-app
+        cors:
+          origins:
+            - https://idaativsita.org
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

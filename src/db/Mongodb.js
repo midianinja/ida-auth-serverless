@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import usersModel from './models/users.model';
 import preRegisterListsModel from './models/preRegisterLists.model';
+import appsModel from './models/apps.model';
 
 mongoose.Promise = global.Promise;
 
@@ -19,6 +20,7 @@ export default async ({ conn, mongoUrl = '' }) => {
 
       newConnection.model('users', usersModel);
       newConnection.model('pre-register-lists', preRegisterListsModel);
+      newConnection.model('apps', appsModel);
       return newConnection;
     }
 
