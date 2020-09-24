@@ -20,7 +20,7 @@ const headers = {
  * @returns {string} random string to phone validation
  */
 const getRandomCode = () => {
-  const codeSize = 6;
+  const codeSize = 4;
   const fisrtPossibleChars = '123456789';
   const possibleChars = '0123456789';
   let text = '';
