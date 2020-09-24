@@ -15,31 +15,55 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const getEmailParams = (ida, to, webBaseUri) => ({
+/**
+ * function that generate phone validation code and save phone in the user
+ * @returns {string} random string to phone validation
+ */
+const getRandomCode = () => {
+  const codeSize = 6;
+  const fisrtPossibleChars = '123456789';
+  const possibleChars = '0123456789';
+  let text = '';
+  for (let i = 0; i < codeSize; i += 1) {
+    if (i === 0) {
+      text += fisrtPossibleChars.charAt(Math.floor(Math.random() * fisrtPossibleChars.length));
+    } else {
+      text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+    }
+  }
+  return text;
+};
+
+
+const getEmailParams = to => ({
   Destination: {
-    ToAddresses: [to.address],
+    ToAddresses: [to.email.address],
   },
   Message: {
     Body: {
       Html: {
         Charset: 'UTF-8',
-        Data: `Clique <a href="${webBaseUri}/reset-password?token=${to.token}">aqui</a> para resetar sua senha.`,
+        Data: `IDA-${to.email.confirmation_code} é o código de confirmação para sua conta no IDA.`,
       },
       Text: {
         Charset: 'UTF-8',
-        Data: `Seu link de reset de senha: ${webBaseUri}/reset-password?token=${to.token}`,
+        Data: `IDA-${to.email.confirmation_code} é o código de confirmação para sua conta no IDA.`,
       },
     },
     Subject: {
       Charset: 'UTF-8',
+<<<<<<< Updated upstream
       Data: 'Link para resetar sua senha',
+=======
+      Data: 'Código de confirmação',
+>>>>>>> Stashed changes
     },
   },
   Source: 'gabrielfurlan05@gmail.com',
 });
 
-const send = (ida, to, webBaseUri) => new Promise((resolve, reject) => {
-  ses.sendEmail(getEmailParams(ida, to, webBaseUri), (err, data) => {
+const send = (to, webBaseUri) => new Promise((resolve, reject) => {
+  ses.sendEmail(getEmailParams(to, webBaseUri), (err, data) => {
     if (err) {
       reject(err);
     } else {
@@ -60,9 +84,9 @@ export const requestResetPassword = async (event) => {
   const phoneExpressionValidator = /^\+[0-9]{9,}$/;
 
   const {
-    SECRET,
+    // SECRET,
     MONGO_URL,
-    WEB_URI,
+    // WEB_URI,
     DATABASE_NAME,
   } = event.stageVariables || ({
     SECRET: 'weednaoehganja',
@@ -111,14 +135,19 @@ export const requestResetPassword = async (event) => {
     });
   }
 
-  const token = jwt.sign({ email: user.email, phone: user.phone, ida: user._id }, SECRET, {
-    expiresIn: '1h',
-  });
-
   if (isValidEmail) {
+    const data = {
+      email: {
+        address: user.email.address,
+        valid: false,
+        confirmation_code: getRandomCode(),
+      },
+    };
     try {
-      await send(user._id, { address: user.email.address, token }, WEB_URI);
+      await Users.findOneAndUpdate({ _id: user._id }, data, { new: true });
+      await send(data);
     } catch (err) {
+      console.log('err:', [err]);
       return ({
         statusCode: statusCode.BAD_REQUEST.code,
         headers,
@@ -126,13 +155,21 @@ export const requestResetPassword = async (event) => {
       });
     }
   } else if (isValidPhone) {
+    const data = {
+      phone: {
+        phone: user.phone.number,
+        valid: false,
+        confirmation_code: getRandomCode(),
+      },
+    };
     const snsData = {
-      Message: `Seu link de reset de senha: ${WEB_URI}/reset-password?token=${token}`,
+      Message: `IDA-${data.phone.confirmation_code} é o código de confirmação de seu telefone para sua conta no IDA.`,
       MessageStructure: 'string',
       PhoneNumber: user.phone.number,
     };
 
     try {
+      await Users.findOneAndUpdate({ _id: user._id }, data, { new: true });
       const publish = await sendSmsAws(snsData);
       console.log('publish:', publish);
     } catch (err) {
@@ -147,7 +184,7 @@ export const requestResetPassword = async (event) => {
   return ({
     statusCode: statusCode.SUCCESS.code,
     headers,
-    body: JSON.stringify({ status: 'reset-password/success', data: { token } }),
+    body: JSON.stringify({ status: 'reset-password/success' }),
   });
 };
 

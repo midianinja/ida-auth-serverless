@@ -16,6 +16,7 @@ export default async ({ conn, mongoUrl = '' }) => {
         bufferCommands: false,
         bufferMaxEntries: 0,
         keepAlive: true,
+        useNewUrlParser: true,
       });
 
       newConnection.model('users', usersModel);
