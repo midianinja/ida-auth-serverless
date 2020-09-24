@@ -52,11 +52,7 @@ const getEmailParams = to => ({
     },
     Subject: {
       Charset: 'UTF-8',
-<<<<<<< Updated upstream
-      Data: 'Link para resetar sua senha',
-=======
       Data: 'Código de confirmação',
->>>>>>> Stashed changes
     },
   },
   Source: 'gabrielfurlan05@gmail.com',
