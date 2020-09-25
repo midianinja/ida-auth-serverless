@@ -6,7 +6,7 @@ const usersModel = new Schema({
   active: { type: Boolean, default: true },
   email: {
     address: { type: String, default: null, lowercase: true },
-    token: { type: String, default: null },
+    confirmation_code: { type: String, default: null },
     valid: { type: Boolean, default: false },
   },
   phone: {
