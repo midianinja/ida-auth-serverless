@@ -57,7 +57,7 @@ export const login = async (event) => {
     }
 
     const token = jwt.sign({ username, ida: user._id }, SECRET, {
-      expiresIn: '1h',
+      expiresIn: '7d',
     });
 
     const userData = {
@@ -75,7 +75,7 @@ export const login = async (event) => {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: { user: userData, ida: userData.ida, token } }),
+      body: JSON.stringify({ ...userData, token }),
     });
   } catch (error) {
     return ({
