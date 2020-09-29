@@ -1,6 +1,7 @@
 
 import AWS from 'aws-sdk';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import statusCode from '../../status';
 import MongoDB from '../../db/Mongodb';
 import { sendSmsAws } from '../utils';
@@ -76,9 +77,10 @@ const send = (to, webBaseUri) => new Promise((resolve, reject) => {
  * @returns {object} containt status, success data or error
  */
 export const requestCode = async (event) => {
-  const { input } = JSON.parse(event.body);
+  const { input, ida } = JSON.parse(event.body);
   const emailExpressionValidator = /^[a-z0-9._-]{2,}@[a-z0-9]{2,}\.[a-z0-9]{2,}(\.[a-z0-9]{2,})*?$/;
   const phoneExpressionValidator = /^\+[0-9]{9,}$/;
+  const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
 
   const {
     // SECRET,
@@ -94,6 +96,7 @@ export const requestCode = async (event) => {
 
   const isValidEmail = emailExpressionValidator.test(input);
   const isValidPhone = phoneExpressionValidator.test(input);
+  const isValidIda = idaExpressionValidator.test(ida);
 
   if (!isValidEmail && !isValidPhone) {
     return ({
@@ -108,9 +111,12 @@ export const requestCode = async (event) => {
     mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
   });
 
-  const filter = {
+
+  const inputFilter = {
     $or: [{ 'phone.number': input }, { 'email.address': input }],
   };
+  const idaFilter = { _id: mongoose.Types.ObjectId(ida) };
+  const filter = isValidIda ? idaFilter : inputFilter;
 
   const Users = conn.model('users');
   let user;
@@ -135,7 +141,7 @@ export const requestCode = async (event) => {
   if (isValidEmail) {
     const data = {
       email: {
-        address: user.email.address,
+        address: input, // user.email.address,
         valid: false,
         confirmation_code: getRandomCode(),
       },
@@ -153,7 +159,7 @@ export const requestCode = async (event) => {
   } else if (isValidPhone) {
     const data = {
       phone: {
-        number: user.phone.number,
+        number: input, // user.phone.number,
         valid: false,
         confirmation_code: getRandomCode(),
       },
@@ -161,7 +167,7 @@ export const requestCode = async (event) => {
     const snsData = {
       Message: `IDA-${data.phone.confirmation_code} é o código de confirmação de seu telefone para sua conta no IDA.`,
       MessageStructure: 'string',
-      PhoneNumber: user.phone.number,
+      PhoneNumber: input, // user.phone.number,
     };
 
     try {

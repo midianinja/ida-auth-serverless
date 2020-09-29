@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
     "dev": "eslint . --fix && sls offline start --skipCacheInvalidation",
+    "windows": "sls offline start --skipCacheInvalidation",
+    "windows:fix": "eslint --fix \"./src/**/*.js\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

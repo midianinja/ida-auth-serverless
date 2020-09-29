@@ -32,6 +32,7 @@ export const sendSmsAws = snsData => new Promise((res, rej) => {
   const sns = new AWS.SNS();
   sns.publish(snsData, (err, data) => {
     console.log('data:', data);
+    console.log('err:', err);
     if (err) return rej(err);
     return res(data);
   });

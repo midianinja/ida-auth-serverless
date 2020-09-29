@@ -22,11 +22,11 @@ const getEmailParams = (ida, to, webBaseUri) => ({
     Body: {
       Html: {
         Charset: 'UTF-8',
-        Data: `Clique <a href="${webBaseUri}/ativacao/${ida}?token=${to.token}">aqui</a> para validar sua conta.`,
+        Data: `Clique <a href="${webBaseUri}/signup/activation/?ida=${ida}&token=${to.token}">aqui</a> para validar sua conta.`,
       },
       Text: {
         Charset: 'UTF-8',
-        Data: `Seu link de ativação: ${webBaseUri}/ativacao/${ida}?token=${to.token}`,
+        Data: `Seu link de ativação: ${webBaseUri}/signup/activation/?ida=${ida}&token=${to.token}`,
       },
     },
     Subject: {
@@ -108,6 +108,7 @@ export const sendEmailValidation = async (event) => {
   const Users = conn.model('users');
   let user;
   try {
+    console.log('new data ', data, 'ida', ida);
     user = await Users.findOneAndUpdate({ _id: ida }, data, { new: true });
   } catch (error) {
     return ({
