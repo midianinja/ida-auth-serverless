@@ -27,6 +27,8 @@ export const validateToken = async (event) => {
       mongoUrl: MONGO_URL.replace('_DATABASE_', DATABASE_NAME),
     });
 
+    console.log(token);
+
     const decoded = await jwt.verify(token, SECRET);
 
     const Users = conn.model('users');
