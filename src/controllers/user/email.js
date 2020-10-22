@@ -89,7 +89,7 @@ export const sendEmailValidation = async (event) => {
   }
 
   const token = jwt.sign({ email, ida }, SECRET, {
-    expiresIn: '1h',
+    expiresIn: '4f',
   });
 
   const data = {
@@ -240,7 +240,7 @@ export const validateEmailToken = async (event) => {
   }
 
   const sessionToken = jwt.sign({ username: user.username, ida: user._id }, SECRET, {
-    expiresIn: '1h',
+    expiresIn: '7d',
   });
 
   return ({

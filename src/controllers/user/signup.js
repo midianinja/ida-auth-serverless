@@ -61,9 +61,8 @@ export const signup = async (event) => {
     const myUser = await newUser.save();
     console.log('user:', myUser);
     const token = jwt.sign({ username, ida: newUser._id },
-      SECRET, { expiresIn: '1h' });
+      SECRET, { expiresIn: '7d' });
 
-    console.log('token:', token);
     return ({
       statusCode: statusCode.CREATED.code,
       headers: {

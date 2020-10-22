@@ -172,7 +172,7 @@ export const requestCode = async (event) => {
 
     try {
       await Users.findOneAndUpdate({ _id: user._id }, data, { new: true });
-      const publish = await sendSmsAws(snsData);
+      await sendSmsAws(snsData);
     } catch (err) {
       return ({
         statusCode: statusCode.BAD_REQUEST.code,
@@ -267,7 +267,7 @@ export const validateCode = async (event) => {
         phone: user.phone.number,
         ida: user._id,
       }, SECRET, {
-        expiresIn: '1h',
+        expiresIn: '7d',
       });
     } catch (err) {
       throw err;
