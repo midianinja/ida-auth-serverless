@@ -282,9 +282,7 @@ functions:
         method: POST
         path: validate-token
         cors:
-          origins:
-            - https://som.vc
-            - https://dev.som.vc
+          origin: '*'
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
