@@ -235,7 +235,7 @@ export const validateCode = async (event) => {
     if (isEmail) {
       data = {
         email: {
-          ...codeOwner.email,
+          email: codeOwner.email,
           confirmation_code: null,
           valid: true,
         },
@@ -244,12 +244,13 @@ export const validateCode = async (event) => {
     if (isPhone) {
       data = {
         phone: {
-          ...codeOwner.phone.number,
+          number: codeOwner.phone.number,
           confirmation_code: null,
           valid: true,
         },
       };
     }
+    console.log('validateCode -> data', data);
     try {
       user = await conn.model('users').findOneAndUpdate(
         { _id: codeOwner._id },
@@ -278,8 +279,10 @@ export const validateCode = async (event) => {
       headers,
       body: JSON.stringify({
         token,
-        email: user.email.address,
-        phone: user.phone.number,
+        email: user.email,
+        phone: user.phone,
+        username: user.username,
+        ida: user._id,
       }),
     });
   } catch (err) {
