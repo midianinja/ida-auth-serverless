@@ -74,6 +74,7 @@ functions:
         path: reset-password
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -93,6 +94,7 @@ functions:
         path: validate-reset-password-token
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -114,6 +116,7 @@ functions:
           origins:
             - https://som.vc
             - https://dev.som.vc
+            - https://accounts.idativista.org
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -150,6 +153,7 @@ functions:
         path: validate-email-token
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -169,6 +173,7 @@ functions:
         path: send-email-validation
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -188,6 +193,7 @@ functions:
         path: phone-generate-code
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -207,6 +213,7 @@ functions:
         path: phone-validate-code
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -245,6 +252,7 @@ functions:
         path: login
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -264,6 +272,7 @@ functions:
         path: signup
         cors: 
           origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
