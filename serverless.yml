@@ -74,7 +74,7 @@ functions:
         path: reset-password
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -94,7 +94,7 @@ functions:
         path: validate-code
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -117,6 +117,7 @@ functions:
             - https://beta.som.vc
             - https://som.vc
             - https://dev.som.vc
+            - https://accounts.idativista.org
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -154,7 +155,7 @@ functions:
         path: validate-email-token
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -174,7 +175,7 @@ functions:
         path: send-email-validation
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -194,7 +195,27 @@ functions:
         path: phone-generate-code
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
+            - https://som.vc
+            - https://dev.som.vc
+          headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+        allowCredentials: true
+  validateCodeFunction: 
+    handler: index.validateCodeFunction
+    events:
+     - http:
+        method: POST
+        path: phone-validate-code
+        cors: 
+          origins:
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -234,7 +255,7 @@ functions:
         path: login
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -254,7 +275,7 @@ functions:
         path: signup
         cors: 
           origins:
-            - https://beta.som.vc
+            - https://accounts.idativista.org
             - https://som.vc
             - https://dev.som.vc
           headers:
@@ -273,10 +294,7 @@ functions:
         method: POST
         path: validate-token
         cors:
-          origins:
-            - https://beta.som.vc
-            - https://som.vc
-            - https://dev.som.vc
+          origin: '*'
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -348,7 +366,7 @@ functions:
         path: create-app
         cors:
           origins:
-            - https://idaativsita.org
+            - https://accounts.idativista.org
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
@@ -366,7 +384,7 @@ functions:
         path: verify-app
         cors:
           origins:
-            - https://idaativsita.org
+            - https://accounts.idativista.org
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
