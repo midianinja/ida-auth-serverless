@@ -194,30 +194,7 @@ functions:
         method: POST
         path: phone-generate-code
         cors: 
-          origins:
-            - https://accounts.idativista.org
-            - https://som.vc
-            - https://dev.som.vc
-          headers:
-            - Content-Type
-            - Access-Control-Allow-Origin
-            - X-Amz-Date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-            - X-Amz-User-Agent
-        allowCredentials: true
-  validateCodeFunction: 
-    handler: index.validateCodeFunction
-    events:
-     - http:
-        method: POST
-        path: phone-validate-code
-        cors: 
-          origins:
-            - https://accounts.idativista.org
-            - https://som.vc
-            - https://dev.som.vc
+          origin: '*'
           headers:
             - Content-Type
             - Access-Control-Allow-Origin

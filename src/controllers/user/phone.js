@@ -14,8 +14,8 @@ const headers = {
  * function that generate phone validation code and save phone in the user
  * @returns {string} random string to phone validation
  */
-const getRandomCode = () => {
-  const codeSize = 6;
+const getRandomCode = (length) => {
+  const codeSize = length || 6;
   const fisrtPossibleChars = '123456789';
   const possibleChars = '0123456789';
   let text = '';
@@ -61,7 +61,7 @@ export const generateCode = async (event) => {
     phone: {
       number: phone,
       valid: false,
-      confirmation_code: getRandomCode(),
+      confirmation_code: getRandomCode(4),
     },
   };
   console.log('data:', data);
