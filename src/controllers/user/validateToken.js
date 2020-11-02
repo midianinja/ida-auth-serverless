@@ -61,7 +61,6 @@ export const validateToken = async (event) => {
       }),
     });
   } catch (error) {
-    console.log(error);
     return ({
       statusCode: statusCode.UNAUTHORIZED.code,
       headers: {
