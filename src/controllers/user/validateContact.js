@@ -78,6 +78,7 @@ const send = (to, webBaseUri) => new Promise((resolve, reject) => {
  */
 export const requestCode = async (event) => {
   const { input, ida } = JSON.parse(event.body);
+  console.log('input', input);
   const emailExpressionValidator = /^[a-z0-9._-]{2,}@[a-z0-9]{2,}\.[a-z0-9]{2,}(\.[a-z0-9]{2,})*?$/;
   const phoneExpressionValidator = /^\+[0-9]{9,}$/;
   const idaExpressionValidator = /^[0-9a-fA-F]{24}$/;
@@ -119,6 +120,7 @@ export const requestCode = async (event) => {
   const filter = isValidIda ? idaFilter : inputFilter;
 
   const Users = conn.model('users');
+  console.log('Users', Users);
   let user;
   try {
     user = await Users.findOne(filter);
@@ -139,6 +141,7 @@ export const requestCode = async (event) => {
   }
 
   if (isValidEmail) {
+    console.log('isValidEmail', isValidEmail);
     const data = {
       email: {
         address: input, // user.email.address,
@@ -147,9 +150,16 @@ export const requestCode = async (event) => {
       },
     };
     try {
-      await Users.findOneAndUpdate({ _id: user._id }, data, { new: true });
-      await send(data);
+      const uaer = await Users.findOneAndUpdate(
+        { _id: user._id },
+        data,
+        { new: true, useFindAndModify: false },
+      );
+      console.log('uaer', uaer);
+      const emailData = await send(data);
+      console.log('emailData', emailData);
     } catch (err) {
+      console.log('err', err);
       return ({
         statusCode: statusCode.BAD_REQUEST.code,
         headers,

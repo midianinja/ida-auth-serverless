@@ -89,7 +89,7 @@ export const sendEmailValidation = async (event) => {
   }
 
   const token = jwt.sign({ email, ida }, SECRET, {
-    expiresIn: '4f',
+    expiresIn: '4d',
   });
 
   const data = {
