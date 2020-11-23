@@ -57,7 +57,7 @@ const getEmailParams = to => ({
       Data: 'Código de confirmação',
     },
   },
-  Source: 'digital.oasi@gmail.com',
+  Source: 'idativista@gmail.com',
 });
 
 const send = (to, webBaseUri) => new Promise((resolve, reject) => {
