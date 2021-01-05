@@ -17,7 +17,7 @@
   "dependencies": {
     "ansi-regex": "^5.0.0",
     "aws-sdk": "^2.564.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.7",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
